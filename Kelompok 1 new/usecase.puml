@@ -1,0 +1,163 @@
+@startuml
+left to right direction
+actor "User" as U
+actor "Admin" as A
+
+rectangle "LUXE Website" {
+
+'=== USER ===
+usecase "Home" as UC1
+usecase "View Collections" as UC1A
+usecase "Add to Bag" as UC1B
+usecase "Bag" as UC1C
+usecase "Akun Saya" as UC1D
+usecase "Collections" as UC2
+usecase "Filter By" as UC2A
+usecase "Add to Bag" as UC2B
+usecase "Bag" as UC2C
+usecase "Akun Saya" as UC2D
+usecase "All Products" as UC2A1
+usecase "Best Sellers" as UC2A3
+usecase "Spring Essentials" as UC2A4
+usecase "Summer Vibes" as UC2A5
+
+
+
+usecase "Shipping & Payment" as UC4A
+usecase "Complete Order" as UC4A1
+usecase "Hapus Item" as UC4A2
+usecase "Select Shipping Address" as UC4A3
+usecase "Payment Method" as UC4A4
+
+
+usecase "About" as UC5
+
+usecase "SEND MESSAGE" as UC6A
+
+usecase "Login/Register" as UC7
+usecase "Forgot Password" as UC7B
+
+usecase "Akun Saya" as UC8
+usecase "Profil Saya" as UC8A
+usecase "Choose File" as UC8A1
+usecase "Upload" as UC8A2
+usecase "Alamat Saya" as UC8B
+usecase "Tambah Alamat Baru" as UC8B1
+usecase "Edit" as UC8B2
+usecase "Hapus" as UC8B3
+usecase "Pembayaran" as UC8B4
+usecase "Tambah Kartu Baru" as UC8B4A
+usecase "Edit" as UC8B4A1
+usecase "Hapus" as UC8B4A2
+usecase "Jadikan Utama" as UC8B4A3
+usecase "Pesanan Saya" as UC8C
+usecase "Ganti Password" as UC8D
+usecase "Simpan Password" as UC8D1
+usecase "Logout" as UC8F
+usecase "Home" as UC8G
+usecase "Collections" as UC8H
+usecase "About" as UC8I
+usecase "Bag" as UC8J
+
+'=== ADMIN ===
+usecase "Login as Admin" as UC9
+usecase "Dashboard" as UC10
+usecase "Products" as UC11
+usecase "Add Product" as UC11A
+usecase "Edit Product" as UC11B
+usecase "Hapus Product" as UC11C
+usecase "Orders" as UC12
+usecase "View" as UC12A
+usecase "Settings" as UC13
+usecase "Pengaturan Toko" as UC13A
+usecase "Pengaturan Pembayaran" as UC13B
+usecase "Simpan Pengaturan Toko" as UC13C
+usecase "Simpan Pengaturan Pembayaran" as UC13D
+usecase "Logout Admin" as UC14
+}
+
+'=== RELASI USER ===
+U --> UC1
+U --> UC2
+U --> UC5
+
+U --> UC7
+
+
+UC1 <.. UC1A : <<extend>>
+UC1 <.. UC1B : <<extend>>
+UC1 <.. UC1C : <<extend>>
+UC1 <.. UC1D : <<extend>>
+' --- BLOK YANG DIPERBAIKI ---
+' Collections di-extend oleh Filter By dan Add to Bag
+UC2 <.. UC2A : <<extend>>
+UC2 <.. UC2B : <<extend>>
+UC2 <.. UC2C : <<extend>>
+UC2 <.. UC2D : <<extend>>
+' Filter detail sekarang meng-extend "Filter By" (UC2A), bukan "Collections" (UC2)
+UC2A <.. UC2A1 : <<extend>>
+UC2A <.. UC2A3 : <<extend>>
+UC2A <.. UC2A4 : <<extend>>
+UC2A <.. UC2A5 : <<extend>>
+' --- AKHIR BLOK PERBAIKAN ---
+
+
+UC2B ..> UC4A : <<include>>
+
+
+UC4A ..> UC4A1 : <<extend>>
+UC4A ..> UC4A2 : <<extend>>
+UC4A ..> UC4A3 : <<include>>
+UC4A ..> UC4A4 : <<include>>
+
+
+' --- BLOK KONTAK DIPERBAIKI (sesuai permintaan sebelumnya) ---
+' Tidak ada akses langsung User ke Contact (UC6)
+' Contact sekarang menjadi perpanjangan dari About
+UC5 <.. UC6A : <<extend>>  
+
+' --- AKHIR BLOK KONTAK ---
+
+
+UC7 <.. UC7B : <<extend>>
+UC7 <.. UC8 : <<extend>>
+
+UC8 ..> UC8A : <<include>>
+UC8A ..> UC8A1 : <<extend>>
+UC8A ..> UC8A2 : <<extend>>
+
+UC8 <.. UC8B : <<extend>>
+UC8B <.. UC8B1 : <<extend>>
+UC8B <.. UC8B2 : <<extend>>
+UC8B <.. UC8B3 : <<extend>>
+UC8 <.. UC8B4 : <<extend>>
+UC8B4 <.. UC8B4A : <<extend>>
+UC8B4A <.. UC8B4A1 : <<extend>>
+UC8B4A <.. UC8B4A2 : <<extend>>
+UC8B4A <.. UC8B4A3 : <<extend>>
+UC8 <.. UC8C : <<extend>>
+UC8 <.. UC8D : <<extend>>
+UC8D <.. UC8D1 : <<extend>>
+UC8 <.. UC8F : <<extend>>
+UC8 <.. UC8G : <<extend>>
+UC8 <.. UC8H : <<extend>>
+
+UC8 <.. UC8I : <<extend>>
+UC8 <.. UC8J : <<extend>>
+
+'=== RELASI ADMIN ===
+A --> UC9
+UC9 ..> UC10 : <<include>>
+UC9 ..> UC11 : <<include>>
+UC9 ..> UC12 : <<include>>
+UC9 ..> UC13 : <<include>>
+UC9 ..> UC14 : <<include>>
+UC11 <.. UC11A : <<extend>>
+UC11 <.. UC11B : <<extend>>
+UC11 <.. UC11C : <<extend>>
+UC12 <.. UC12A : <<extend>>
+UC13 <.. UC13A : <<extend>>
+UC13 <.. UC13B : <<extend>>
+UC13A ..> UC13C : <<include>>
+UC13B ..> UC13D : <<include>>
+@enduml

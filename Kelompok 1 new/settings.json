@@ -1,0 +1,24 @@
+{
+    "store": {
+        "name": "LUXE",
+        "email": "contact@luxe.com",
+        "phone": "+1 (555) 123-4567",
+        "currency": null,
+        "address": null
+    },
+    "payment": {
+        "credit_card": true,
+        "paypal": true,
+        "apple_pay": false,
+        "google_pay": false
+    },
+    "shipping": {
+        "rate": "5.99",
+        "free_threshold": "100.00",
+        "countries": [
+            "US",
+            "CA",
+            "UK"
+        ]
+    }
+}
